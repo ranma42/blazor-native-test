@@ -11,4 +11,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <NativeFileReference Include="example.c" />
+  </ItemGroup>
+
+  <!-- In debug, make builds faster by reducing optimizations (and preserve additional debugging info)-->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <WasmNativeStrip>false</WasmNativeStrip>
+    <EmccCompileOptimizationFlag>-O1</EmccCompileOptimizationFlag>
+  </PropertyGroup>
+
 </Project>
